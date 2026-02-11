@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if task_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Is Completed</th>
+        <th>Priority</th>
+        <th>Type</th>
+        <th>Assignees</th>
+      </tr>
+      {% for task in task_list %}
+        <tr>
+          <td>{{ task.name }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.deadline }}</td>
+          <td>{{ task.is_completed }}</td>
+          <td>{{ task.priority }}</td>
+          <td>{{ task.task_type }}</td>
+          <td>{{ task.assignees }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no tasks in task manager.</p>
+  {% endif %}
+{% endblock %}
