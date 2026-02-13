@@ -2,25 +2,26 @@
 
 {% block content %}
   {% if task_list %}
+    <h1> All tasks
+     <a href="{% url 'tasks:task-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+    </h1>
     <table class="table">
       <tr>
         <th>Name</th>
-        <th>Description</th>
         <th>Deadline</th>
         <th>Is Completed</th>
         <th>Priority</th>
         <th>Type</th>
-        <th>Assignees</th>
       </tr>
       {% for task in task_list %}
         <tr>
-          <td>{{ task.name }}</td>
-          <td>{{ task.description }}</td>
+          <td><a href="{% url 'tasks:task-detail' pk=task.id %}">{{ task.name }}</a></td>
           <td>{{ task.deadline }}</td>
           <td>{{ task.is_completed }}</td>
           <td>{{ task.priority }}</td>
           <td>{{ task.task_type }}</td>
-          <td>{{ task.assignees }}</td>
         </tr>
       {% endfor %}
     </table>

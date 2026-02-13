@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ task.name }}
+    <a href="{% url 'tasks:task-update' pk=task.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
+    <a href="{% url 'tasks:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+  </h1>
+  <p><b>Description: </b>{{ task.description }}</p>
+  <p><b>Deadline: </b>{{ task.deadline }}</p>
+  <p><b>Is completed: </b>{{ task.is_completed }}</p>
+  <p><b>Priority: </b>{{ task.priority }}</p>
+  <p><b>Assignees:</b></p>
+  <ul>
+    {% for assignee in task.assignees.all %}
+      <li>{{ assignee.username }}: {{ assignee.first_name }} {{ assignee.last_name }}</li>
+    {% empty %}
+      <p>There are no assignees still.</p>
+    {% endfor %}
+  </ul>
+{% endblock %}
