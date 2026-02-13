@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h1>All workers
+      <a href="{% url 'tasks:worker-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
   {% if worker_list %}
     <table class="table">
       <tr>
@@ -12,7 +17,7 @@
       </tr>
       {% for worker in worker_list %}
         <tr>
-          <td>{{ worker.username }}</td>
+          <td><a href="{% url 'tasks:worker-detail' pk=worker.id %}">{{ worker.username }}</a></td>
           <td>{{ worker.first_name }}</td>
           <td>{{ worker.last_name }}</td>
           <td>{{ worker.position }}</td>

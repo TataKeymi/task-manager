@@ -6,7 +6,10 @@ from tasks.views import (index,
                          TaskDetailView,
                          TaskCreateView,
                          TaskUpdateView,
-                         TaskDeleteView)
+                         TaskDeleteView,
+                         WorkerDetailView,
+                         WorkerDeleteView,
+                         WorkerCreateView)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -17,6 +20,11 @@ urlpatterns = [
     path("tasks/delete/<int:pk>", TaskDeleteView.as_view(), name="task-delete"),
 
     path("workers/", WorkerListView.as_view(), name="worker-list"),
+    path("workers/<int:pk>", WorkerDetailView.as_view(), name="worker-detail"),
+    path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
+
+    path("workers/delete/<int:pk>", WorkerDeleteView.as_view(), name="worker-delete"),
+
 ]
 
 app_name = "tasks"
