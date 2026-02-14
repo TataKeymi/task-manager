@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if position_list %}
+    <h1> All positions
+     <a href="{% url 'tasks:position-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+    </h1>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Update</th>
+      </tr>
+      {% for position in position_list %}
+        <tr>
+          <td><a href="{% url 'tasks:position-detail' pk=position.id %}">{{ position.name }}</a></td>
+          <td><a href="{% url 'tasks:position-update' pk=position.id %}">Update</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no positions in task manager.</p>
+  {% endif %}
+{% endblock %}

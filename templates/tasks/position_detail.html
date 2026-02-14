@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>
+    {{ position.worker_count }} worker{{ position.worker_count|pluralize }}
+    with position "{{ position.name }}"
+  </h2>
+  {% if position.workers.all %}
+    <ul>
+      {% for worker in position.workers.all %}
+        {{ worker.username }}: {{ worker.first_name }} {{ worker.last_name }}
+      {% endfor %}
+    </ul>
+  {% else %}
+    No workers with this position yet.
+  {% endif %}
+{% endblock %}

@@ -10,13 +10,17 @@ class Position(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def worker_count(self):
+        return self.workers.count()
+
 
 class Worker(AbstractUser):
     position = models.ForeignKey(
         Position,
         on_delete=models.PROTECT,
-        null=True,
-        blank=True)
+        default="Unknown",
+        related_name="workers",)
 
     class Meta:
         ordering = ("username",)

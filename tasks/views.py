@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from tasks.forms import TaskForm, WorkerCreationForm
-from tasks.models import Task, Worker
+from tasks.models import Task, Worker, Position
 
 
 @login_required
@@ -69,3 +69,25 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("tasks:worker-list")
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+    paginate_by = 10
+
+
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Position
+
+
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    fields = ("name",)
+    success_url = reverse_lazy("tasks:position-list")
+
+
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = ("name",)
+    success_url = reverse_lazy("tasks:position-list")
+
