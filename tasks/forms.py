@@ -1,3 +1,4 @@
+from datetime import date
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -19,6 +20,15 @@ class TaskForm(forms.ModelForm):
             "deadline": forms.DateInput(
                 attrs={"type": "date"}),
         }
+
+    def clean_deadline(self):
+        return validate_deadline(self.cleaned_data["deadline"])
+
+
+def validate_deadline(deadline):
+    if deadline < date.today():
+        raise forms.ValidationError("Deadline can not be in the past")
+    return deadline
 
 
 class WorkerCreationForm(UserCreationForm):
