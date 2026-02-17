@@ -6,10 +6,6 @@
     <a href="{% url 'tasks:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
       Delete
     </a>
-{##}
-{#    <a href="{% url 'taxi:driver-update' pk=driver.id %}" class="btn btn-secondary link-to-page">#}
-{#      Update license number#}
-{#    </a>#}
   </h1>
 
   <p><strong>First name:</strong> {{ worker.first_name }}</p>
@@ -18,16 +14,27 @@
   <p><strong>Is staff:</strong> {{ worker.is_staff }}</p>
 
   <div class="ml-3">
-    <h4>Tasks</h4>
+    <h4>Uncompleted tasks</h4>
 
-    {% for task in worker.tasks.all %}
-        <hr>
-        <p><strong>Name:</strong> {{ task.name }}</p>
-        <p><strong>Priority:</strong> {{ task.priority }}</p>
-        <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+    {% for task in incompleted_tasks %}
+    <hr>
+    <p><strong>Name:</strong> {{ task.name }}</p>
+    <p><strong>Priority:</strong> {{ task.priority }}</p>
+    <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+      {% empty %}
+      <p>No incompleted tasks</p>
+    {% endfor %}
+
+    <h4>Completed tasks</h4>
+
+    {% for task in completed_tasks %}
+      <hr>
+      <p><strong>Name:</strong> {{ task.name }}</p>
+      <p><strong>Priority:</strong> {{ task.priority }}</p>
+      <p><strong>Deadline:</strong> {{ task.deadline }}</p>
 
     {% empty %}
-      <p>No tasks!</p>
+      <p>No completed tasks</p>
     {% endfor %}
   </div>
 {% endblock %}

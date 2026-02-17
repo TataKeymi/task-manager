@@ -57,7 +57,14 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
-    success_url = reverse_lazy("tasks:worker-list")
+    template_name = "tasks/worker_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["incompleted_tasks"] = self.object.tasks.filter(is_completed=False)
+        context["completed_tasks"] = self.object.tasks.filter(is_completed=True)
+        return context
+
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):

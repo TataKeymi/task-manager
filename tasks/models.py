@@ -7,6 +7,9 @@ from task_manager import settings
 class Position(models.Model):
     name = models.CharField(max_length=100)
 
+    class Meta:
+        ordering = ("name",)
+
     def __str__(self):
         return self.name
 
@@ -28,9 +31,11 @@ class Worker(AbstractUser):
         return f"{self.username}: {self.first_name} {self.last_name}"
 
 
-
 class TaskType(models.Model):
     name = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ("name",)
 
     def __str__(self):
         return self.name
