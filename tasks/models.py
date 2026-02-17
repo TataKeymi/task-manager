@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -55,7 +56,7 @@ class TaskPriority(models.TextChoices):  # class for priority field in Task mode
 class Task(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    deadline = models.DateTimeField(null=True, blank=True)
+    deadline = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(
         max_length=10,
@@ -80,3 +81,9 @@ class Task(models.Model):
 
     def __str__(self):
         return f"{self.name}: {self.get_priority_display()}"
+
+    def is_overdue(self):
+        if self.deadline is None:
+            return False
+        return self.deadline < timezone.now().date() and not self.is_completed
+

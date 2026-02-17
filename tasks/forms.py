@@ -2,6 +2,7 @@ from datetime import date
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.utils import timezone
 
 from tasks.models import Task, Position, Worker
 
@@ -26,7 +27,7 @@ class TaskForm(forms.ModelForm):
 
 
 def validate_deadline(deadline):
-    if deadline < date.today():
+    if deadline < timezone.now().date():
         raise forms.ValidationError("Deadline can not be in the past")
     return deadline
 
