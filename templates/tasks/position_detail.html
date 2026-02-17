@@ -5,10 +5,10 @@
     {{ position.worker_count }} worker{{ position.worker_count|pluralize }}
     with position "{{ position.name }}"
   </h2>
-  {% if position.workers.all %}
+  {% if position.worker_count %}
     <ul>
       {% for worker in position.workers.all %}
-        {{ worker.username }}: {{ worker.first_name }} {{ worker.last_name }}
+        <li>{{ worker.username }}: {{ worker.first_name }} {{ worker.last_name }}</li>
       {% endfor %}
     </ul>
   {% else %}

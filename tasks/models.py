@@ -19,7 +19,6 @@ class Worker(AbstractUser):
     position = models.ForeignKey(
         Position,
         on_delete=models.PROTECT,
-        default="Unknown",
         related_name="workers",)
 
     class Meta:
@@ -35,6 +34,10 @@ class TaskType(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def task_count(self):
+        return self.tasks.count()
 
 
 class TaskPriority(models.TextChoices):  # class for priority field in Task model
@@ -52,8 +55,13 @@ class Task(models.Model):
     priority = models.CharField(
         max_length=10,
         choices=TaskPriority.choices,
-        default=TaskPriority.MEDIUM)
-    task_type = models.ForeignKey(TaskType, on_delete=models.PROTECT)
+        default=TaskPriority.MEDIUM
+    )
+    task_type = models.ForeignKey(
+        TaskType,
+        on_delete=models.PROTECT,
+        related_name="tasks",
+    )
     assignees = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="tasks",

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ task_type.task_count }} task{{ task_type.task_count|pluralize }}
+    with task type {{ task_type.name }}</h2>
+  {% if task_type.task_count %}
+    <ul>
+      {% for task in task_type.tasks.all %}
+        <li><a href="{% url 'tasks:task-detail' pk=task.id %}">{{ task.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    No tasks of this type yet.
+  {% endif %}
+{% endblock %}
