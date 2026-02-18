@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  {% if tag_list %}
+    <h1>All tags
+     <a href="{% url 'tasks:tag-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+    </h1>
+
+    <form method="get" action="" class="form-inline">
+      {{ search_form|crispy }}
+      <input class="btn btn-primary" type="submit" value="Search">
+    </form>
+
+    <ul>
+      {% for tag in tag_list %}
+        <li><a href="{% url 'tasks:tag-detail' pk=tag.id %}">{{ tag.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    No tags in task manager yet.
+  {% endif %}
+
+{% endblock %}

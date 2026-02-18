@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ tag.task_count }} task{{ tag.task_count|pluralize }}
+    with tag {{ tag.name }}
+  <a href="{% url 'tasks:tag-update' pk=tag.id %}" class="btn btn-secondary link-to-page">Update</a>
+  <a href="{% url 'tasks:tag-delete' pk=tag.id %}" class="btn btn-danger link-to-page">Delete</a>
+  </h2>
+  {% if tag.task_count %}
+    <ul>
+      {% for task in tag.tasks.all %}
+        <li><a href="{% url 'tasks:task-detail' pk=task.id %}">{{ task.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    No tasks with this tag yet.
+  {% endif %}
+{% endblock %}

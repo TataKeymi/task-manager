@@ -4,12 +4,18 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 
-from tasks.models import Task, Position, Worker
+from tasks.models import Task, Position, Worker, Tag
 
 
 class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
@@ -82,6 +88,17 @@ class PositionSearchForm(forms.Form):
 class TaskTypeSearchForm(forms.Form):
     name = forms.CharField(
         max_length=100,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={
+            "placeholder": "Search by name",
+        })
+    )
+
+
+class TagSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=50,
         required=False,
         label="",
         widget=forms.TextInput(attrs={

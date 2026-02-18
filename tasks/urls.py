@@ -15,7 +15,10 @@ from tasks.views import (index,
                          PositionCreateView,
                          PositionUpdateView,
                          TaskTypeListView,
-                         TaskTypeDetailView, TaskTypeCreateView, TaskTypeUpdateView)
+                         TaskTypeDetailView,
+                         TaskTypeCreateView,
+                         TaskTypeUpdateView,
+                         TagListView, TagDetailView, TagCreateView, TagUpdateView, TagDeleteView)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -38,6 +41,11 @@ urlpatterns = [
     path("task_types/<int:pk>/", TaskTypeDetailView.as_view(), name="task-type-detail"),
     path("task_types/create/", TaskTypeCreateView.as_view(), name="task-type-create"),
     path("task_types/update/<int:pk>/", TaskTypeUpdateView.as_view(), name="task-type-update"),
+    path("tags/", TagListView.as_view(), name="tag-list"),
+    path("tags/<int:pk>/", TagDetailView.as_view(), name="tag-detail"),
+    path("tags/create/", TagCreateView.as_view(), name="tag-create"),
+    path("tags/update/<int:pk>/", TagUpdateView.as_view(), name="tag-update"),
+    path("tags/delete/<int:pk>/", TagDeleteView.as_view(), name="tag-delete"),
 
 ]
 

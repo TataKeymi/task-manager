@@ -5,9 +5,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from tasks.forms import TaskForm, WorkerCreationForm, TaskSearchForm, WorkerSearchForm, PositionSearchForm, \
-    TaskTypeSearchForm
-from tasks.models import Task, Worker, Position, TaskType
+from tasks.forms import (TaskForm,
+                         WorkerCreationForm,
+                         TaskSearchForm,
+                         WorkerSearchForm,
+                         PositionSearchForm,
+                         TaskTypeSearchForm, TagSearchForm)
+from tasks.models import Task, Worker, Position, TaskType, Tag
 
 
 @login_required
@@ -193,3 +197,43 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     context_object_name = "task_type"
 
 
+class TagListView(LoginRequiredMixin, generic.ListView):
+    model = Tag
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = Tag.objects.all()
+        form = TagSearchForm(self.request.GET)
+        if form.is_valid():
+            queryset = queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TagListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        context["name"] = name
+        context["search_form"] = TagSearchForm(
+            initial={"name": name},
+        )
+        return context
+
+
+class TagDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Tag
+
+
+class TagCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Tag
+    fields = ("name",)
+    success_url = reverse_lazy("tasks:tag-list")
+
+
+class TagUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Tag
+    fields = ("name",)
+    success_url = reverse_lazy("tasks:tag-list")
+
+
+class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("tasks:tag-list")

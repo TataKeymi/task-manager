@@ -46,6 +46,20 @@ class TaskType(models.Model):
         return self.tasks.count()
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def task_count(self):
+        return self.tasks.count()
+
+
 class TaskPriority(models.TextChoices):  # class for priority field in Task model
     URGENT = "urgent", "Urgent"
     HIGH = "high", "High"
@@ -72,6 +86,11 @@ class Task(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="tasks",
         blank=True,
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        blank=True,
+        related_name="tasks"
     )
 
     class Meta:

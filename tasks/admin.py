@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from tasks.models import Task, TaskType, Worker, Position
+from tasks.models import Task, TaskType, Worker, Position, Tag
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
@@ -29,4 +29,9 @@ class TaskTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
+    search_fields = ["name",]
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
     search_fields = ["name",]
