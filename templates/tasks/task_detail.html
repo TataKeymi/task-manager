@@ -24,4 +24,12 @@
       <p>There are no assignees still.</p>
     {% endfor %}
   </ul>
+   <p><b>Tags:</b></p>
+  <ul>
+    {% for tag in task.tags.all %}
+      <li>{{ tag.name }}</li>
+    {% empty %}
+      <p>There are no tags for this task.</p>
+    {% endfor %}
+  </ul>
 {% endblock %}
