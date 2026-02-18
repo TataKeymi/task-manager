@@ -1,5 +1,7 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -55,21 +57,28 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
 
 
-class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("tasks:task-list")
+    success_message = "Task successfully created"
 
 
-class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("tasks:task-list")
+    success_message = "Task successfully updated"
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("tasks:task-list")
+
+    def post(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Task successfully deleted")
+        return response
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
@@ -104,15 +113,21 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
 
 
-class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+class WorkerCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     success_url = reverse_lazy("tasks:worker-list")
+    success_message = "Worker successfully created"
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("tasks:worker-list")
+
+    def post(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Worker successfully deleted")
+        return response
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
@@ -140,16 +155,18 @@ class PositionDetailView(LoginRequiredMixin, generic.DetailView):
     model = Position
 
 
-class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+class PositionCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     model = Position
     fields = ("name",)
     success_url = reverse_lazy("tasks:position-list")
+    success_message = "Position successfully updated."
 
 
-class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+class PositionUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     model = Position
     fields = ("name",)
     success_url = reverse_lazy("tasks:position-list")
+    success_message = "Position successfully updated"
 
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
@@ -181,20 +198,24 @@ class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     context_object_name = "task_type"
 
 
-class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+class TaskTypeCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     model = TaskType
     fields = ("name",)
     success_url = reverse_lazy("tasks:task-type-list")
     template_name = "tasks/task_type_form.html"
     context_object_name = "task_type"
+    success_message = "Task type successfully created."
 
 
-class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+
+class TaskTypeUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     model = TaskType
     fields = ("name",)
     success_url = reverse_lazy("tasks:task-type-list")
     template_name = "tasks/task_type_form.html"
     context_object_name = "task_type"
+    success_message = "Task type successfully updated."
+
 
 
 class TagListView(LoginRequiredMixin, generic.ListView):
@@ -222,18 +243,25 @@ class TagDetailView(LoginRequiredMixin, generic.DetailView):
     model = Tag
 
 
-class TagCreateView(LoginRequiredMixin, generic.CreateView):
+class TagCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     model = Tag
     fields = ("name",)
     success_url = reverse_lazy("tasks:tag-list")
+    success_message = "Tag successfully created."
 
 
-class TagUpdateView(LoginRequiredMixin, generic.UpdateView):
+class TagUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     model = Tag
     fields = ("name",)
     success_url = reverse_lazy("tasks:tag-list")
+    success_message = "Tag successfully updated."
 
 
 class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Tag
     success_url = reverse_lazy("tasks:tag-list")
+
+    def post(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Tag successfully deleted.")
+        return response
