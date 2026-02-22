@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Delete project {{ project.name }}?</h1>
+  <h1>Delete task type {{ task_type.name }}?</h1>
   {% if has_dependencies %}
     <p class="text-danger">This item cannot be deleted. There are related objects depending on it.</p>
   {% endif %}

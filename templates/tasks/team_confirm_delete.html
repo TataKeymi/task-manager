@@ -2,10 +2,14 @@
 
 {% block content %}
   <h1>Delete team {{ team.name }}?</h1>
+  {% if has_dependencies %}
+    <p class="text-danger">This item cannot be deleted. There are related objects depending on it.</p>
+  {% endif %}
   <form action="" method="post">
     {% csrf_token %}
 
-    <input type="submit" value="Yes" class="btn btn-danger">
+    <input type="submit" value="Yes" class="btn btn-danger"
+           {% if has_dependencies %}disabled{% endif %}>
 
     <a href="{% url 'tasks:project-list' %}" class="btn btn-secondary">
       Cancel
