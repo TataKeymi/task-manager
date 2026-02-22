@@ -18,7 +18,9 @@ from tasks.views import (index,
                          TaskTypeDetailView,
                          TaskTypeCreateView,
                          TaskTypeUpdateView,
-                         TagListView, TagDetailView, TagCreateView, TagUpdateView, TagDeleteView)
+                         TagListView, TagDetailView, TagCreateView, TagUpdateView, TagDeleteView, ProjectListView,
+                         ProjectDetailView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView, TeamListView,
+                         TeamDetailView, TeamUpdateView, TeamDeleteView, TeamCreateView)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -46,6 +48,16 @@ urlpatterns = [
     path("tags/create/", TagCreateView.as_view(), name="tag-create"),
     path("tags/update/<int:pk>/", TagUpdateView.as_view(), name="tag-update"),
     path("tags/delete/<int:pk>/", TagDeleteView.as_view(), name="tag-delete"),
+    path("projects/", ProjectListView.as_view(), name="project-list"),
+    path("projects/<int:pk>/", ProjectDetailView.as_view(), name="project-detail"),
+    path("projects/create/", ProjectCreateView.as_view(), name="project-create"),
+    path("projects/update/<int:pk>/", ProjectUpdateView.as_view(), name="project-update"),
+    path("projects/delete/<int:pk>/", ProjectDeleteView.as_view(), name="project-delete"),
+    path("teams/", TeamListView.as_view(), name="team-list"),
+    path("teams/<int:pk>/", TeamDetailView.as_view(), name="team-detail"),
+    path("teams/create/", TeamCreateView.as_view(), name="team-create"),
+    path("teams/update/<int:pk>/", TeamUpdateView.as_view(), name="team-update"),
+    path("teams/delete/<int:pk>/", TeamDeleteView.as_view(), name="team-delete"),
 
 ]
 

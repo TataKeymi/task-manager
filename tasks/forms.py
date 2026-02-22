@@ -53,6 +53,9 @@ class WorkerCreationForm(UserCreationForm):
     )
 
 
+
+
+
 class TaskSearchForm(forms.Form):
     name = forms.CharField(
         max_length=100,
@@ -105,3 +108,26 @@ class TagSearchForm(forms.Form):
             "placeholder": "Search by name",
         })
     )
+
+
+class ProjectSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={
+            "placeholder": "Search by name",
+        })
+    )
+
+
+class TeamSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={
+            "placeholder": "Search by name",
+        })
+    )
+

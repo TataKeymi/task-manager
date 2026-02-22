@@ -6,7 +6,7 @@ from task_manager import settings
 
 
 class Position(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         ordering = ("name",)
@@ -33,7 +33,7 @@ class Worker(AbstractUser):
 
 
 class TaskType(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         ordering = ("name",)
@@ -60,6 +60,31 @@ class Tag(models.Model):
         return self.tasks.count()
 
 
+class Team(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    workers = models.ManyToManyField(
+        Worker,
+        related_name="teams",
+    )
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    team = models.ForeignKey(Team, on_delete=models.PROTECT, related_name="projects")
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+
 class TaskPriority(models.TextChoices):  # class for priority field in Task model
     URGENT = "urgent", "Urgent"
     HIGH = "high", "High"
@@ -68,7 +93,7 @@ class TaskPriority(models.TextChoices):  # class for priority field in Task mode
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
@@ -92,6 +117,13 @@ class Task(models.Model):
         blank=True,
         related_name="tasks"
     )
+    project = models.ForeignKey(
+        Project,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="tasks",
+    )
 
     class Meta:
         ordering = ("name",)
@@ -105,4 +137,6 @@ class Task(models.Model):
         if self.deadline is None:
             return False
         return self.deadline < timezone.now().date() and not self.is_completed
+
+
 

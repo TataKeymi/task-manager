@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from tasks.models import Task, TaskType, Worker, Position, Tag
+from tasks.models import Task, TaskType, Worker, Position, Tag, Team, Project
+
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ["name", "description", "deadline", "is_completed", "priority", "task_type", "get_assignees"]
-    list_filter = ["deadline", "is_completed", "priority", "task_type"]
+    list_display = ["name", "deadline", "is_completed", "priority", "task_type", "get_assignees", "project"]
+    list_filter = ["deadline", "is_completed", "priority", "task_type", "project"]
     search_fields = ["name", "description"]
 
     @admin.display(description="assignees")
@@ -35,3 +36,14 @@ class PositionAdmin(admin.ModelAdmin):
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     search_fields = ["name",]
+
+
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    search_fields = ["name",]
+
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    search_fields = ["name",]
+

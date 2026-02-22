@@ -12,8 +12,8 @@ from tasks.forms import (TaskForm,
                          TaskSearchForm,
                          WorkerSearchForm,
                          PositionSearchForm,
-                         TaskTypeSearchForm, TagSearchForm)
-from tasks.models import Task, Worker, Position, TaskType, Tag
+                         TaskTypeSearchForm, TagSearchForm, ProjectSearchForm, TeamSearchForm)
+from tasks.models import Task, Worker, Position, TaskType, Tag, Project, Team
 
 
 @login_required
@@ -265,3 +265,102 @@ class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
         response = super().delete(request, *args, **kwargs)
         messages.success(request, "Tag successfully deleted.")
         return response
+
+
+class ProjectListView(LoginRequiredMixin, generic.ListView):
+    model = Project
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = Project.objects.all()
+        form = ProjectSearchForm(self.request.GET)
+        if form.is_valid():
+            queryset = queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProjectListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        context["name"] = name
+        context["search_form"] = ProjectSearchForm(
+            initial={"name": name},
+        )
+        return context
+
+
+class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Project
+
+
+class ProjectCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
+    model = Project
+    fields = ("name", "team",)
+    success_url = reverse_lazy("tasks:project-list")
+    success_message = "Project successfully created."
+
+
+class ProjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
+    model = Project
+    fields = ("name","team", )
+    success_url = reverse_lazy("tasks:project-list")
+    success_message = "Project successfully updated."
+
+
+class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Project
+    success_url = reverse_lazy("tasks:project-list")
+
+    def post(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Project successfully deleted.")
+        return response
+
+
+class TeamListView(LoginRequiredMixin, generic.ListView):
+    model = Team
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = Team.objects.all()
+        form = TeamSearchForm(self.request.GET)
+        if form.is_valid():
+            queryset = queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TeamListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        context["name"] = name
+        context["search_form"] = TeamSearchForm(
+            initial={"name": name},
+        )
+        return context
+
+
+class TeamDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Team
+
+
+class TeamCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
+    model = Team
+    fields = ("name", "workers",)
+    success_url = reverse_lazy("tasks:team-list")
+    success_message = "Team successfully created."
+
+
+class TeamUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
+    model = Team
+    fields = ("name", "workers",)
+    success_url = reverse_lazy("tasks:team-list")
+    success_message = "Team successfully updated."
+
+
+class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Team
+    success_url = reverse_lazy("tasks:team-list")
+
+    def post(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Team successfully deleted.")
+        return response
+

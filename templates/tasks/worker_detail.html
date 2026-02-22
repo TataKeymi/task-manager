@@ -14,6 +14,18 @@
   <p><strong>Is staff:</strong> {{ worker.is_staff }}</p>
 
   <div class="ml-3">
+    <h4>Teams</h4>
+    <ul>
+      {% for team in worker.teams.all %}
+        <hr>
+        <li> {{ team.name }}</li>
+      {% empty %}
+        <p>Worker does not have any team yet.</p>
+      {% endfor %}
+    </ul>
+
+    <br>
+
     <h4>Uncompleted tasks</h4>
 
     {% for task in incompleted_tasks %}
