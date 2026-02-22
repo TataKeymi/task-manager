@@ -4,11 +4,15 @@
   <h2>
     {{ position.worker_count }} worker{{ position.worker_count|pluralize }}
     with position "{{ position.name }}"
+    <a href="{% url 'tasks:position-delete' pk=position.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
   </h2>
   {% if position.worker_count %}
     <ul>
       {% for worker in position.workers.all %}
-        <li>{{ worker.username }}: {{ worker.first_name }} {{ worker.last_name }}</li>
+        <hr>
+        <li><a href="{% url 'tasks:worker-detail' pk=worker.id %}">{{ worker.username }}: {{ worker.first_name }} {{ worker.last_name }}</a></li>
       {% endfor %}
     </ul>
   {% else %}

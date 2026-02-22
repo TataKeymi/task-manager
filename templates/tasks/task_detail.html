@@ -20,7 +20,8 @@
   <p><b>Assignees:</b></p>
   <ul>
     {% for assignee in task.assignees.all %}
-      <li>{{ assignee.username }}: {{ assignee.first_name }} {{ assignee.last_name }}</li>
+      <hr>
+      <li><a href="{% url 'tasks:worker-detail' pk=assignee.id %}">{{ assignee.username }}: {{ assignee.first_name }} {{ assignee.last_name }}</a></li>
     {% empty %}
       <p>There are no assignees still.</p>
     {% endfor %}
@@ -28,7 +29,8 @@
    <p><b>Tags:</b></p>
   <ul>
     {% for tag in task.tags.all %}
-      <li>{{ tag.name }}</li>
+      <hr>
+      <li><a href="{% url 'tasks:tag-detail' pk=tag.id %}">{{ tag.name }}</a></li>
     {% empty %}
       <p>There are no tags for this task.</p>
     {% endfor %}

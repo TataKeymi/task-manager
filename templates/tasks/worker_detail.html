@@ -18,7 +18,7 @@
     <ul>
       {% for team in worker.teams.all %}
         <hr>
-        <li> {{ team.name }}</li>
+        <li><a href="{% url 'tasks:team-detail' pk=team.id %}"> {{ team.name }} </a></li>
       {% empty %}
         <p>Worker does not have any team yet.</p>
       {% endfor %}
@@ -29,11 +29,11 @@
     <h4>Uncompleted tasks</h4>
 
     {% for task in incompleted_tasks %}
-    <hr>
-    <p><strong>Name:</strong> {{ task.name }}</p>
-    <p><strong>Priority:</strong> {{ task.priority }}</p>
-    <p><strong>Deadline:</strong> {{ task.deadline }}</p>
-      {% empty %}
+      <hr>
+      <p><strong>Name:</strong><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }} </a></p>
+      <p><strong>Priority:</strong> {{ task.priority }}</p>
+      <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+    {% empty %}
       <p>No incompleted tasks</p>
     {% endfor %}
 
@@ -41,7 +41,7 @@
 
     {% for task in completed_tasks %}
       <hr>
-      <p><strong>Name:</strong> {{ task.name }}</p>
+      <p><strong>Name:</strong><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }} </a></p>
       <p><strong>Priority:</strong> {{ task.priority }}</p>
       <p><strong>Deadline:</strong> {{ task.deadline }}</p>
 

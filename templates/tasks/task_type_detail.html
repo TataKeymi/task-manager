@@ -2,10 +2,15 @@
 
 {% block content %}
   <h2>{{ task_type.task_count }} task{{ task_type.task_count|pluralize }}
-    with task type {{ task_type.name }}</h2>
+    with task type {{ task_type.name }}
+    <a href="{% url 'tasks:task-type-delete' pk=task_type.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+  </h2>
   {% if task_type.task_count %}
     <ul>
       {% for task in task_type.tasks.all %}
+        <hr>
         <li><a href="{% url 'tasks:task-detail' pk=task.id %}">{{ task.name }}</a></li>
       {% endfor %}
     </ul>

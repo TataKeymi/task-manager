@@ -20,6 +20,8 @@ from tasks.models import Task, Worker, Position, TaskType, Tag, Project, Team
 def index(request: HttpRequest) -> HttpResponse:
     num_tasks = Task.objects.count()
     num_workers = Worker.objects.count()
+    num_projects = Project.objects.count()
+    num_teams = Team.objects.count()
 
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
@@ -27,6 +29,8 @@ def index(request: HttpRequest) -> HttpResponse:
     context = {
         "num_tasks": num_tasks,
         "num_workers": num_workers,
+        "num_projects": num_projects,
+        "num_teams": num_teams,
         "num_visits": num_visits + 1,
     }
 
@@ -35,7 +39,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = Task.objects.prefetch_related("assignees")
@@ -82,7 +86,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = Worker.objects.all()
@@ -132,7 +136,7 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = Position.objects.all()
@@ -169,9 +173,24 @@ class PositionUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.Update
     success_message = "Position successfully updated"
 
 
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("tasks:position-list")
+
+    def post(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Position successfully deleted")
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["has_dependencies"] = self.object.workers.exists()
+        return context
+
+
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
-    paginate_by = 10
+    paginate_by = 9
     template_name = "tasks/task_type_list.html"
     context_object_name = "task_type_list"
 
@@ -217,10 +236,26 @@ class TaskTypeUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.Update
     success_message = "Task type successfully updated."
 
 
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = TaskType
+    success_url = reverse_lazy("tasks:task-type-list")
+    template_name = "tasks/task_type_confirm_delete.html"
+    context_object_name = "task_type"
+
+    def post(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Task type successfully deleted")
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["has_dependencies"] = self.object.tasks.exists()
+        return context
+
 
 class TagListView(LoginRequiredMixin, generic.ListView):
     model = Tag
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = Tag.objects.all()
@@ -269,7 +304,7 @@ class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = Project.objects.all()
@@ -315,10 +350,14 @@ class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
         messages.success(request, "Project successfully deleted.")
         return response
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["has_dependencies"] = self.object.tasks.exists()
+        return context
 
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = Team.objects.all()
@@ -364,3 +403,7 @@ class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
         messages.success(request, "Team successfully deleted.")
         return response
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["has_dependencies"] = self.object.projects.exists()
+        return context

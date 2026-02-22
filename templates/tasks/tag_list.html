@@ -16,6 +16,7 @@
 
     <ul>
       {% for tag in tag_list %}
+        <hr>
         <li><a href="{% url 'tasks:tag-detail' pk=tag.id %}">{{ tag.name }}</a></li>
       {% endfor %}
     </ul>
