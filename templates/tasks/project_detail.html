@@ -8,16 +8,16 @@
   </h1>
   <br>
 
-  <p><strong>Team: </strong> {{ project.team.name }}</p>
+  <p class="text-dark"><strong>Team: </strong> {{ project.team.name }}</p>
 
   <br>
-  <p><strong>Tasks:</strong></p>
+  <p class="text-dark"><strong>Tasks:</strong></p>
   <ul>
     {% for task in project.tasks.all %}
       <hr>
       <li><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }}</a></li>
     {% empty %}
-      <p>No tasks yet</p>
+      <p class="text-dark">No tasks yet</p>
     {% endfor %}
   </ul>
 {% endblock %}

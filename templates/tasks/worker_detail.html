@@ -8,10 +8,10 @@
     </a>
   </h1>
 
-  <p><strong>First name:</strong> {{ worker.first_name }}</p>
-  <p><strong>Last name:</strong> {{ worker.last_name }}</p>
-  <p><strong>Email:</strong> {{ worker.email }}</p>
-  <p><strong>Is staff:</strong> {{ worker.is_staff }}</p>
+  <p class="text-dark"><strong>First name:</strong> {{ worker.first_name }}</p>
+  <p class="text-dark"><strong>Last name:</strong> {{ worker.last_name }}</p>
+  <p class="text-dark"><strong>Email:</strong> {{ worker.email }}</p>
+  <p class="text-dark"><strong>Is staff:</strong> {{ worker.is_staff }}</p>
 
   <div class="ml-3">
     <h4>Teams</h4>
@@ -20,7 +20,7 @@
         <hr>
         <li><a href="{% url 'tasks:team-detail' pk=team.id %}"> {{ team.name }} </a></li>
       {% empty %}
-        <p>Worker does not have any team yet.</p>
+        <p class="text-dark">Worker does not have any team yet.</p>
       {% endfor %}
     </ul>
 
@@ -30,23 +30,23 @@
 
     {% for task in incompleted_tasks %}
       <hr>
-      <p><strong>Name:</strong><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }} </a></p>
-      <p><strong>Priority:</strong> {{ task.priority }}</p>
-      <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+      <p class="text-dark"><strong>Name:</strong><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }} </a></p>
+      <p class="text-dark"><strong>Priority:</strong> {{ task.priority }}</p>
+      <p class="text-dark"><strong>Deadline:</strong> {{ task.deadline }}</p>
     {% empty %}
-      <p>No incompleted tasks</p>
+      <p class="text-dark">No incompleted tasks</p>
     {% endfor %}
 
     <h4>Completed tasks</h4>
 
     {% for task in completed_tasks %}
       <hr>
-      <p><strong>Name:</strong><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }} </a></p>
-      <p><strong>Priority:</strong> {{ task.priority }}</p>
-      <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+      <p class="text-dark"><strong>Name:</strong><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }} </a></p>
+      <p class="text-dark"><strong>Priority:</strong> {{ task.priority }}</p>
+      <p class="text-dark"><strong>Deadline:</strong> {{ task.deadline }}</p>
 
     {% empty %}
-      <p>No completed tasks</p>
+      <p class="text-dark">No completed tasks</p>
     {% endfor %}
   </div>
 {% endblock %}

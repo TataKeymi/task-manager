@@ -7,23 +7,23 @@
         </a>
   </h1>
   <br>
-    <p><strong>Team members:</strong></p>
+    <p class="text-dark"><strong>Team members:</strong></p>
   <ul>
     {% for worker in team.workers.all %}
       <hr>
       <li><a href="{% url 'tasks:worker-detail' pk=worker.id %}"> {{ worker.username }}: {{ worker.first_name }} {{ worker.last_name }}</a></li>
     {% empty %}
-      <p>No workers in this team yet</p>
+      <p class="text-dark">No workers in this team yet</p>
     {% endfor %}
   </ul>
   <br>
-  <p><strong>Projects:</strong></p>
+  <p class="text-dark"><strong>Projects:</strong></p>
   <ul>
     {% for project in team.projects.all %}
       <hr>
       <li><a href="{% url 'tasks:project-detail' pk=project.id %}"> {{ project.name }}</a></li>
     {% empty %}
-      <p>No projects yet</p>
+      <p class="text-dark">No projects yet</p>
     {% endfor %}
   </ul>
 {% endblock %}

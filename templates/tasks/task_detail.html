@@ -12,27 +12,27 @@
   {% if task.is_overdue %}
     <span class="text-danger">Overdue</span>
   {% endif %}
-  <p><b>Description: </b>{{ task.description }}</p>
-  <p><b>Deadline: </b>{{ task.deadline }}</p>
-  <p><b>Project: </b>{{ task.project }}</p>
-  <p><b>Is completed: </b>{{ task.is_completed }}</p>
-  <p><b>Priority: </b>{{ task.priority }}</p>
-  <p><b>Assignees:</b></p>
+  <p class="text-dark"><b>Description: </b>{{ task.description }}</p>
+  <p class="text-dark"><b>Deadline: </b>{{ task.deadline }}</p>
+  <p class="text-dark"><b>Project: </b>{{ task.project }}</p>
+  <p class="text-dark"><b>Is completed: </b>{{ task.is_completed }}</p>
+  <p class="text-dark"><b>Priority: </b>{{ task.priority }}</p>
+  <p class="text-dark"><b>Assignees:</b></p>
   <ul>
     {% for assignee in task.assignees.all %}
       <hr>
       <li><a href="{% url 'tasks:worker-detail' pk=assignee.id %}">{{ assignee.username }}: {{ assignee.first_name }} {{ assignee.last_name }}</a></li>
     {% empty %}
-      <p>There are no assignees still.</p>
+      <p class="text-dark">There are no assignees still.</p>
     {% endfor %}
   </ul>
-   <p><b>Tags:</b></p>
+   <p class="text-dark"><b>Tags:</b></p>
   <ul>
     {% for tag in task.tags.all %}
       <hr>
       <li><a href="{% url 'tasks:tag-detail' pk=tag.id %}">{{ tag.name }}</a></li>
     {% empty %}
-      <p>There are no tags for this task.</p>
+      <p class="text-dark">There are no tags for this task.</p>
     {% endfor %}
   </ul>
 {% endblock %}

@@ -9,10 +9,11 @@
   {% if tag.task_count %}
     <ul>
       {% for task in tag.tasks.all %}
+        <hr>
         <li><a href="{% url 'tasks:task-detail' pk=task.id %}">{{ task.name }}</a></li>
       {% endfor %}
     </ul>
   {% else %}
-    No tasks with this tag yet.
+    <p class="text-dark"> No tasks with this tag yet. </p>
   {% endif %}
 {% endblock %}

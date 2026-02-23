@@ -39,7 +39,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
-    paginate_by = 9
+    paginate_by = 7
 
     def get_queryset(self):
         queryset = Task.objects.prefetch_related("assignees")
@@ -86,7 +86,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
-    paginate_by = 9
+    paginate_by = 7
 
     def get_queryset(self):
         queryset = Worker.objects.all()
@@ -136,7 +136,7 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
-    paginate_by = 9
+    paginate_by = 7
 
     def get_queryset(self):
         queryset = Position.objects.all()
@@ -190,7 +190,7 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
-    paginate_by = 9
+    paginate_by = 7
     template_name = "tasks/task_type_list.html"
     context_object_name = "task_type_list"
 
@@ -255,7 +255,7 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TagListView(LoginRequiredMixin, generic.ListView):
     model = Tag
-    paginate_by = 9
+    paginate_by = 6
 
     def get_queryset(self):
         queryset = Tag.objects.all()
@@ -276,6 +276,7 @@ class TagListView(LoginRequiredMixin, generic.ListView):
 
 class TagDetailView(LoginRequiredMixin, generic.DetailView):
     model = Tag
+    paginate_by = 6
 
 
 class TagCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
@@ -304,7 +305,7 @@ class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
-    paginate_by = 9
+    paginate_by = 7
 
     def get_queryset(self):
         queryset = Project.objects.all()
@@ -357,7 +358,7 @@ class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
-    paginate_by = 9
+    paginate_by = 7
 
     def get_queryset(self):
         queryset = Team.objects.all()

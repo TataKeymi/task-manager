@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -137,6 +138,4 @@ class Task(models.Model):
         if self.deadline is None:
             return False
         return self.deadline < timezone.now().date() and not self.is_completed
-
-
 
