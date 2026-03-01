@@ -1,4 +1,3 @@
-from datetime import date
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -44,7 +43,8 @@ class WorkerCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields + (
             "first_name",
             "last_name",
-            "position"
+            "position",
+            "email"
         )
 
     position = forms.ModelChoiceField(

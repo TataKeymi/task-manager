@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -132,7 +131,7 @@ class Task(models.Model):
         verbose_name_plural = "tasks"
 
     def __str__(self):
-        return f"{self.name}: {self.get_priority_display()}"
+        return f"{self.name}: till {self.deadline}, priority {self.priority}"
 
     def is_overdue(self):
         if self.deadline is None:
