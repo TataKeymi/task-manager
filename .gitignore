@@ -1,5 +1,8 @@
 .idea
-venv
+.venv
 __pycache__
 db.sqlite3
-
+screenshots
+task_manager_DB-structure.drawio
+task_manager_DB-structure.png
+task_manager_db_structure.jpg
