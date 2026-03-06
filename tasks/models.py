@@ -1,0 +1,140 @@
+from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+from task_manager import settings
+
+
+class Position(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def worker_count(self):
+        return self.workers.count()
+
+
+class Worker(AbstractUser):
+    position = models.ForeignKey(
+        Position,
+        on_delete=models.PROTECT,
+        related_name="workers",)
+
+    class Meta:
+        ordering = ("username",)
+
+    def __str__(self):
+        return f"{self.username}: {self.first_name} {self.last_name}"
+
+
+class TaskType(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def task_count(self):
+        return self.tasks.count()
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def task_count(self):
+        return self.tasks.count()
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    workers = models.ManyToManyField(
+        Worker,
+        related_name="teams",
+    )
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    team = models.ForeignKey(Team, on_delete=models.PROTECT, related_name="projects")
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+
+class TaskPriority(models.TextChoices):  # class for priority field in Task model
+    URGENT = "urgent", "Urgent"
+    HIGH = "high", "High"
+    MEDIUM = "medium", "Medium"
+    LOW = "low", "Low"
+
+
+class Task(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField()
+    deadline = models.DateField(null=True, blank=True)
+    is_completed = models.BooleanField(default=False)
+    priority = models.CharField(
+        max_length=10,
+        choices=TaskPriority.choices,
+        default=TaskPriority.MEDIUM
+    )
+    task_type = models.ForeignKey(
+        TaskType,
+        on_delete=models.PROTECT,
+        related_name="tasks",
+    )
+    assignees = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="tasks",
+        blank=True,
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        blank=True,
+        related_name="tasks"
+    )
+    project = models.ForeignKey(
+        Project,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="tasks",
+    )
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name = "task"
+        verbose_name_plural = "tasks"
+
+    def __str__(self):
+        return f"{self.name}: till {self.deadline}, priority {self.priority}"
+
+    def is_overdue(self):
+        if self.deadline is None:
+            return False
+        return self.deadline < timezone.now().date() and not self.is_completed
+

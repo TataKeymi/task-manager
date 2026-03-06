@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Username: {{ worker.username }}
+    <a href="{% url 'tasks:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+  </h1>
+
+  <p class="text-dark"><strong>First name:</strong> {{ worker.first_name }}</p>
+  <p class="text-dark"><strong>Last name:</strong> {{ worker.last_name }}</p>
+  <p class="text-dark"><strong>Email:</strong> {{ worker.email }}</p>
+  <p class="text-dark"><strong>Is staff:</strong> {{ worker.is_staff }}</p>
+
+  <div class="ml-3">
+    <h4>Teams</h4>
+    <ul>
+      {% for team in worker.teams.all %}
+        <hr>
+        <li><a href="{% url 'tasks:team-detail' pk=team.id %}"> {{ team.name }} </a></li>
+      {% empty %}
+        <p class="text-dark">Worker does not have any team yet.</p>
+      {% endfor %}
+    </ul>
+
+    <br>
+
+    <h4>Uncompleted tasks</h4>
+
+    {% for task in incompleted_tasks %}
+      <hr>
+      <p class="text-dark"><strong>Name:</strong><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }} </a></p>
+      <p class="text-dark"><strong>Priority:</strong> {{ task.priority }}</p>
+      <p class="text-dark"><strong>Deadline:</strong> {{ task.deadline }}</p>
+    {% empty %}
+      <p class="text-dark">No incompleted tasks</p>
+    {% endfor %}
+
+    <h4>Completed tasks</h4>
+
+    {% for task in completed_tasks %}
+      <hr>
+      <p class="text-dark"><strong>Name:</strong><a href="{% url 'tasks:task-detail' pk=task.id %}"> {{ task.name }} </a></p>
+      <p class="text-dark"><strong>Priority:</strong> {{ task.priority }}</p>
+      <p class="text-dark"><strong>Deadline:</strong> {{ task.deadline }}</p>
+
+    {% empty %}
+      <p class="text-dark">No completed tasks</p>
+    {% endfor %}
+  </div>
+{% endblock %}

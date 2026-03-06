@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  {% if task_type_list %}
+    <h1> All task types
+      <a href="{% url 'tasks:task-type-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+    </h1>
+
+    <form method="get" action="" class="form-inline">
+      {{ search_form|crispy }}
+      <input class="btn btn-primary" type="submit" value="Search">
+    </form>
+
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Update</th>
+      </tr>
+      {% for task_type in task_type_list %}
+        <tr>
+          <td><a href="{% url 'tasks:task-type-detail' pk=task_type.id %}">{{ task_type.name }}</a></td>
+          <td><a href="{% url 'tasks:task-type-update' pk=task_type.id %}">Update</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no task types in task manager.</p>
+  {% endif %}
+{% endblock %}
+
