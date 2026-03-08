@@ -1,0 +1,995 @@
+[
+{
+    "model": "tasks.position",
+    "pk": 1,
+    "fields": {
+        "name": "Developer"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 2,
+    "fields": {
+        "name": "Project Manager"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 3,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 4,
+    "fields": {
+        "name": "Designer"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 5,
+    "fields": {
+        "name": "DevOps"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 6,
+    "fields": {
+        "name": "Full Stack Developer"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 7,
+    "fields": {
+        "name": "Tech Lead"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 8,
+    "fields": {
+        "name": "Product Manager"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 9,
+    "fields": {
+        "name": "Business Analyst"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 10,
+    "fields": {
+        "name": "Engineering Manager"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 11,
+    "fields": {
+        "name": "test"
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$mSYHXiIAi9F3kv40kxd4CX$8IHtd03aqXlLK6dEG0NOt5xfOhuhmTbyrS0xmsKPfU0=",
+        "last_login": "2026-02-23T19:05:18.664Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-02-08T15:14:43Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$VdN5486CWPGjEGjXeq2v7L$LFXHDzHqhbLyzxYpVCE2mOE+sVsdx9HgmZlKroJbQ3o=",
+        "last_login": "2026-02-17T10:21:28.390Z",
+        "is_superuser": false,
+        "username": "jack_l",
+        "first_name": "Jack",
+        "last_name": "Ley",
+        "email": "jackley@user.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-08T15:24:02Z",
+        "position": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$IInKjuugIwHAAPBwsW8SWB$rPMyuaPR//BSJmxg2/G940t1FGOPlrvwmiTO/Ni3L44=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "olena_dev",
+        "first_name": "Olena",
+        "last_name": "Hrytsenko",
+        "email": "olena.dev@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-17T15:40:07.528Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$CmndFKJKJJ5ttt8v9ECnuW$FKTJcZB462hobK+s9NKkF2U6wJ9gjVjweqvlqMo+jic=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "andrii_backend",
+        "first_name": "Andrii",
+        "last_name": "Kovalenko",
+        "email": "andrii.k@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-17T15:41:08.730Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$u19H11axd3sMpcqaErMYSW$v2BwDZ4lImeFjCgZq8V/m1RswkNZXUVEiAbV9isZpqg=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "marta_ui",
+        "first_name": "Marta",
+        "last_name": "Shevchuk",
+        "email": "marta.ui@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-17T15:41:52.456Z",
+        "position": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$1b4eYAGdRWetn7fy49NLwl$Jva1HIBfJJ1Bt2RWSCy2ckVEP43qN8K1trV0KlxbIjE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "dmytro_creative",
+        "first_name": "Dmytro",
+        "last_name": "Lysenko",
+        "email": "dmytro.design@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-17T15:42:39.437Z",
+        "position": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$LhScFqfeEv1Z73IOTXFuXy$tspcPba3XOPWFStSt7cAxGc5UzHbIQnruIEgT9jKLQs=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "iryna_qa",
+        "first_name": "Iryna",
+        "last_name": "Melnyk",
+        "email": "iryna.qa@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-17T15:43:53.495Z",
+        "position": 3,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$YDE5Q5bLuzdh1252g4kuWe$r2hohalvpuCIWYMCX8vzQXd75aU2nWeQFkSbubloa40=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "roman_pm",
+        "first_name": "Roman",
+        "last_name": "Tkachenko",
+        "email": "roman.pm@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-17T15:44:41.891Z",
+        "position": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$CnebCAUE1e49OgzAMzBjXQ$D/5NDpctv2WkLlTVcf7+q4Woos+69Qajc/+o8bK3zAA=",
+        "last_login": "2026-03-07T11:42:34.146Z",
+        "is_superuser": false,
+        "username": "mia_support",
+        "first_name": "Mia",
+        "last_name": "Clark",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-23T20:06:03.250Z",
+        "position": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 1,
+    "fields": {
+        "name": "Bug"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 2,
+    "fields": {
+        "name": "New feature"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 3,
+    "fields": {
+        "name": "Breaking change"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 4,
+    "fields": {
+        "name": "Refactoring"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 5,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 7,
+    "fields": {
+        "name": "Performance optimization"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 8,
+    "fields": {
+        "name": "Security issue"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 9,
+    "fields": {
+        "name": "UI improvement"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 10,
+    "fields": {
+        "name": "Backend enhancement"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 11,
+    "fields": {
+        "name": "Database migration"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 12,
+    "fields": {
+        "name": "API integration"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 13,
+    "fields": {
+        "name": "DevOps task"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 14,
+    "fields": {
+        "name": "Infrastructure update"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 15,
+    "fields": {
+        "name": "Technical debt"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 1,
+    "fields": {
+        "name": "python-refactoring"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 2,
+    "fields": {
+        "name": "database-optimization"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 3,
+    "fields": {
+        "name": "api-integration"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 4,
+    "fields": {
+        "name": "bug-fix"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 5,
+    "fields": {
+        "name": "performance"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 6,
+    "fields": {
+        "name": "authentication"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 7,
+    "fields": {
+        "name": "unit-testing"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 8,
+    "fields": {
+        "name": "migration"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 9,
+    "fields": {
+        "name": "ui-improvement"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 10,
+    "fields": {
+        "name": "layout-update"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 11,
+    "fields": {
+        "name": "responsive-design"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 12,
+    "fields": {
+        "name": "accessibility"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 13,
+    "fields": {
+        "name": "landing-page-layout"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 14,
+    "fields": {
+        "name": "design-review"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 15,
+    "fields": {
+        "name": "regression-testing"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 16,
+    "fields": {
+        "name": "manual-testing"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 17,
+    "fields": {
+        "name": "edge-cases"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 18,
+    "fields": {
+        "name": "code-review"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 19,
+    "fields": {
+        "name": "documentation"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 20,
+    "fields": {
+        "name": "sprint-planning"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 21,
+    "fields": {
+        "name": "client-request"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 22,
+    "fields": {
+        "name": "high-priority"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 23,
+    "fields": {
+        "name": "technical-debt"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 24,
+    "fields": {
+        "name": "research"
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 1,
+    "fields": {
+        "name": "Backend Core Team",
+        "workers": [
+            4,
+            3
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 2,
+    "fields": {
+        "name": "Frontend Team",
+        "workers": [
+            6,
+            5
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 3,
+    "fields": {
+        "name": "QA Automation",
+        "workers": [
+            7,
+            2
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 4,
+    "fields": {
+        "name": "QA Manual",
+        "workers": [
+            7,
+            3
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 5,
+    "fields": {
+        "name": "UI/UX Design",
+        "workers": [
+            6,
+            5
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 6,
+    "fields": {
+        "name": "Project Managers",
+        "workers": [
+            2,
+            8
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 7,
+    "fields": {
+        "name": "DevOps",
+        "workers": [
+            3
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 8,
+    "fields": {
+        "name": "Mobile Team",
+        "workers": [
+            2,
+            8
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 11,
+    "fields": {
+        "name": "Customer Experience Team",
+        "workers": [
+            9,
+            8
+        ]
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 1,
+    "fields": {
+        "name": "TaskFlow API",
+        "team": 1
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 2,
+    "fields": {
+        "name": "TaskFlow Web App",
+        "team": 2
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 3,
+    "fields": {
+        "name": "AutoTest Framework",
+        "team": 1
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 4,
+    "fields": {
+        "name": "Manual Testing Program",
+        "team": 4
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 5,
+    "fields": {
+        "name": "Design System 2.0",
+        "team": 5
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 6,
+    "fields": {
+        "name": "Delivery Optimization",
+        "team": 6
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 7,
+    "fields": {
+        "name": "Cloud Infrastructure Upgrade",
+        "team": 7
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 8,
+    "fields": {
+        "name": "TaskFlow Mobile App",
+        "team": 8
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 11,
+    "fields": {
+        "name": "Internal CRM System",
+        "team": 8
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 12,
+    "fields": {
+        "name": "SaaS Billing System",
+        "team": 8
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 13,
+    "fields": {
+        "name": "Notification Service",
+        "team": 2
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 14,
+    "fields": {
+        "name": "Cloud Infrastructure Migration",
+        "team": 6
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+        "name": "Dashboard fixing",
+        "description": "Fix Dashboard for Vacancies",
+        "deadline": "2026-02-28",
+        "is_completed": false,
+        "priority": "urgent",
+        "task_type": 1,
+        "project": 2,
+        "assignees": [
+            2
+        ],
+        "tags": [
+            21,
+            14,
+            19,
+            17,
+            13,
+            10,
+            24,
+            11,
+            23,
+            9
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+        "name": "Add sign-in with Google button",
+        "description": "You need to create a button. It should enable sign-in function.",
+        "deadline": "2026-02-02",
+        "is_completed": false,
+        "priority": "high",
+        "task_type": 2,
+        "project": 8,
+        "assignees": [
+            2
+        ],
+        "tags": [
+            12,
+            21,
+            22,
+            1
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 4,
+    "fields": {
+        "name": "Implement user authentication flow",
+        "description": "Add login, logout and registration functionality",
+        "deadline": "2026-03-08",
+        "is_completed": false,
+        "priority": "high",
+        "task_type": 2,
+        "project": 1,
+        "assignees": [
+            4,
+            3
+        ],
+        "tags": [
+            3,
+            6,
+            19,
+            17,
+            22,
+            10,
+            8,
+            5
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 5,
+    "fields": {
+        "name": "Optimize task filtering performance",
+        "description": "Improve queryset efficiency and add DB indexes",
+        "deadline": "2026-03-07",
+        "is_completed": false,
+        "priority": "medium",
+        "task_type": 3,
+        "project": 1,
+        "assignees": [
+            4
+        ],
+        "tags": [
+            12,
+            3,
+            6,
+            4,
+            14,
+            17,
+            22,
+            16,
+            1,
+            23
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 6,
+    "fields": {
+        "name": "Fix deadline validation bug",
+        "description": "Prevent creating tasks with past dates",
+        "deadline": "2026-03-01",
+        "is_completed": true,
+        "priority": "high",
+        "task_type": 1,
+        "project": 1,
+        "assignees": [
+            9,
+            3
+        ],
+        "tags": [
+            12,
+            5,
+            1,
+            11,
+            20,
+            9,
+            7
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 7,
+    "fields": {
+        "name": "Redesign task detail page UI",
+        "description": "Improve layout and visual hierarchy",
+        "deadline": "2026-04-04",
+        "is_completed": false,
+        "priority": "medium",
+        "task_type": 4,
+        "project": 6,
+        "assignees": [
+            5
+        ],
+        "tags": [
+            12,
+            14,
+            17,
+            22,
+            13,
+            20,
+            23,
+            9
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 8,
+    "fields": {
+        "name": "Create dashboard mockups",
+        "description": "Design overwiev page with task statistics",
+        "deadline": "2026-03-01",
+        "is_completed": false,
+        "priority": "high",
+        "task_type": 2,
+        "project": 5,
+        "assignees": [
+            6
+        ],
+        "tags": [
+            12,
+            6,
+            21,
+            15
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 9,
+    "fields": {
+        "name": "Test task creation flow",
+        "description": "Check validation, deadlines and edge cases",
+        "deadline": "2026-03-19",
+        "is_completed": false,
+        "priority": "high",
+        "task_type": 5,
+        "project": 4,
+        "assignees": [
+            7
+        ],
+        "tags": [
+            12,
+            4,
+            18,
+            14,
+            10,
+            16,
+            11,
+            23,
+            7
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 10,
+    "fields": {
+        "name": "Regression testing after deadline update",
+        "description": "Verify no old functionality was broken",
+        "deadline": "2026-03-21",
+        "is_completed": true,
+        "priority": "medium",
+        "task_type": 5,
+        "project": 4,
+        "assignees": [
+            7
+        ],
+        "tags": [
+            12,
+            6,
+            4,
+            21,
+            1,
+            15,
+            24,
+            23
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 11,
+    "fields": {
+        "name": "Plan sprint backlog",
+        "description": "Define tasks and priorities for next sprint",
+        "deadline": "2026-03-14",
+        "is_completed": false,
+        "priority": "high",
+        "task_type": 3,
+        "project": 6,
+        "assignees": [
+            8
+        ],
+        "tags": [
+            12,
+            3,
+            19,
+            17,
+            8,
+            5,
+            1
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 12,
+    "fields": {
+        "name": "Prepare demo presentation",
+        "description": "Collect screenshots and explain key features",
+        "deadline": "2026-02-28",
+        "is_completed": false,
+        "priority": "low",
+        "task_type": 2,
+        "project": 6,
+        "assignees": [
+            5,
+            8
+        ],
+        "tags": [
+            12,
+            21,
+            18,
+            17,
+            10,
+            16,
+            11,
+            20,
+            7
+        ]
+    }
+}
+]
