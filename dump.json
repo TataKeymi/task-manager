@@ -80,8 +80,8 @@
     "model": "tasks.worker",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$260000$mSYHXiIAi9F3kv40kxd4CX$8IHtd03aqXlLK6dEG0NOt5xfOhuhmTbyrS0xmsKPfU0=",
-        "last_login": "2026-02-23T19:05:18.664Z",
+        "password": "pbkdf2_sha256$1000000$kdgESsCPQa1Gm6aNDtBLGi$fGbA4I7lIB74vGtHBEoZ7QIQV9VQSS5tIHPUykwqaE4=",
+        "last_login": "2026-03-08T11:47:56.603Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
@@ -232,8 +232,8 @@
     "model": "tasks.worker",
     "pk": 9,
     "fields": {
-        "password": "pbkdf2_sha256$260000$CnebCAUE1e49OgzAMzBjXQ$D/5NDpctv2WkLlTVcf7+q4Woos+69Qajc/+o8bK3zAA=",
-        "last_login": "2026-03-07T11:42:34.146Z",
+        "password": "pbkdf2_sha256$1000000$uhe10CCYA0ei5C1ZIDl5r9$X1r9CW+Tq2S0wucVSNQu+FZSmVs0C0S0W69qqVPYJDA=",
+        "last_login": "2026-03-08T10:02:28.933Z",
         "is_superuser": false,
         "username": "mia_support",
         "first_name": "Mia",
